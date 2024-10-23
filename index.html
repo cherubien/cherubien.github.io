@@ -38,7 +38,6 @@
         <div class="row my-3">
             <div class="col">
                 <div class="display-3">
-                    <a href = "Act 2/index.html" class="button">Click Here</a>
                 </div>
             </div>
         </div>
@@ -54,12 +53,12 @@
         var title = ["Brochure Making", "Kyoto Japan", "Portfolio", "", "", ""];
         var img = ["https://github.com/cherubien/SAM_Thumbnail/blob/main/Brochure_Img%20(1).png?raw=true", "https://github.com/cherubien/SAM_Thumbnail/blob/main/Kyoto_Img%20(1).png?raw=true", "https://github.com/cherubien/SAM_Thumbnail/blob/main/Portfolio_Img.png?raw=true", "", "", ""];
         var text = ["We are task to create a Brochure that shows the Attributes, Characteristics, and Properties of a product.", "We did a simple website that showcase a place of our choice and be creative about how we promote it using bootstrap.", "Establishing the skill we have learned from previous activities, we made a very simple portfolio website where we keep our outputs.", "", "", ""];
-        var href = ["https://github.com/cherubien/cherubien.github.io/tree/main/Act%201", "https://github.com/cherubien/cherubien.github.io/tree/main/Act%202", ""];
+        var link = ["https://github.com/cherubien/cherubien.github.io/tree/main/Act%201", "https://cherubien.github.io//Act%202/index.html", ""];
 
         for (var i = 0; i < 6; i++) {
             var container = document.getElementById("container");
             container.innerHTML += `
-                <div class="col-12 col-lg-6 col-xl-4"><div class="card my-3"><img src="${img[i]}" class="card-img-top" alt="${title[i]}"><div class="card-header">${task[i]}</div><div class="card-body"><h5 class="card-title">${title[i]}</h5><p class="card-text">${text[i]}</p><a href="${href[i]}" class="btn btn-primary">Click Here</a></div></div></div>`;
+                <div class="col-12 col-lg-6 col-xl-4"><div class="card my-3"><img src="${img[i]}" class="card-img-top" alt="${title[i]}"><div class="card-header">${task[i]}</div><div class="card-body"><h5 class="card-title">${title[i]}</h5><p class="card-text">${text[i]}</p><a href="${link[i]}" class="btn btn-primary">Click Here</a></div></div></div>`;
         }
     </script>
 </body>
