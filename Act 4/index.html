@@ -53,6 +53,36 @@
                 console.error(err);
             }
         };
+
+        const displayCharacters = (characters) => {
+            const searchTerm = searchBar.value.toLowerCase();
+            const filteredCharacters = characters.filter(character => character.name.toLowerCase().includes(searchTerm)).slice(0, 25);
+
+            const htmlString = filteredCharacters.map(character => {
+                const houseColor = colors[character.house?.toLowerCase()] || '#eaeaea';
+                return `
+                    <div class="col">
+                        <div class="character-card" style="background-color: ${houseColor};" onclick="viewCharacter('${character.id || character.name}')">
+                            <img src="${character.image}" alt="${character.name}">
+                            <div class="p-2">
+                                <h5>${character.name}</h5>
+                                <p>House: ${character.house}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            charactersList.innerHTML = htmlString;
+        };
+
+        searchBar.addEventListener('input', () => displayCharacters(hpCharacters));
+
+        loadCharacters();
+
+        function viewCharacter(characterId) {
+            window.location.href = `view.html?id=${characterId}`;
+        }
         
     </script>
 </body>
