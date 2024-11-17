@@ -23,10 +23,14 @@
         body {
             height: 100%;
             overflow-x: hidden;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             background: linear-gradient(200deg, #BA8F72, #6A3816);
+            background-attachment: fixed;
+            background-size: cover;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -87,7 +91,6 @@
             font-family: 'Roboto Slab', sans-serif;
         }
 
-
         .intro-text-container {
             text-align: left;
             max-width: 600px;
@@ -136,6 +139,52 @@
             padding-top: 20px;
             font-size: 1.1rem;
             font-family: 'Roboto Slab', sans-serif;
+        }
+
+        @media screen and (max-width: 479px) {
+            body {
+                background-size: 100% 100%;
+                padding: 10px;
+            }
+
+            .banner-strip {
+                justify-content: center;
+            }
+
+            .intro-text {
+                font-size: 1.5rem;
+                margin-left: 12%;
+            }
+
+            .bsit {
+                font-size: 1rem;
+                margin-left: 10%;
+            }
+
+            .name {
+                font-size: 1.9rem;
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+
+            .profile-image img {
+                width: 300px;
+                height: 300px;
+                margin-right: 10%;
+            }
+
+            
+            .card {
+                width: 300px;
+                height: 350px;
+                margin: auto;
+                margin-bottom: 10px;
+            }
+                        
+            .card-text {
+                font-size: medium;
+            }
+            
         }
     </style>
 </head>
