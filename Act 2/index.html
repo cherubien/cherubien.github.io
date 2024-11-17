@@ -24,6 +24,14 @@
             font-size: large;
             font-weight: normal;
         }
+
+        @media screen and (max-width: 479px) {
+            .map {
+                width: 100%;
+                height: 240px;
+                padding: 5px;
+            }
+        }
     </style>
 </head>
 
@@ -91,7 +99,7 @@
         <div class="row my-3" id="container2"></div>
     </div>
 
-    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Q-2QB_jxi4zpLT0_3Zs8J2g4CMxqxmc&ehbc=2E312F&noprof=1" width="1300" height="480" style="display: block; margin: auto; padding-bottom: 20px;"></iframe>
+    <iframe class="map" src="https://www.google.com/maps/d/u/0/embed?mid=1Q-2QB_jxi4zpLT0_3Zs8J2g4CMxqxmc&ehbc=2E312F&noprof=1" width="1300" height="480" style="display: block; margin: auto; padding-bottom: 20px;"></iframe>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
