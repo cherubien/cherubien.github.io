@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bien Carlo | Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-orange: #E36729;
+            --dark-bg: #f8f9fa;
+            --nav-height: 70px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+        }
+
+        .text-primary {
+            color: var(--primary-orange) !important;
+        }
+
+        /* --- Navigation --- */
+        #navbar-main {
+            height: var(--nav-height);
+        }
+
+        .nav-link-home {
+            color: #6c757d;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-link-home:hover {
+            color: var(--primary-orange);
+        }
+
+        /* --- Carousel --- */
+        #portfolio {
+            padding-top: calc(var(--nav-height) + 50px) !important;
+        }
+
+        .carousel-container {
+            position: relative;
+            padding: 0 80px;
+            margin-top: 2rem;
+        }
+
+        .carousel-item {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .portfolio-carousel-img {
+            height: 600px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-item:not(.active) {
+            opacity: 0.3;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-orange);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 1;
+        }
+
+        .carousel-control-prev {
+            left: -60px;
+        }
+
+        .carousel-control-next {
+            right: -60px;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-container {
+                padding: 0;
+            }
+
+            .portfolio-carousel-img {
+                height: 300px;
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar-main" class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary fs-4" href="index.html">Bien Carlo &lt;/&gt;</a>
+            <div class="ms-auto">
+                <a href="index.html" class="nav-link-home d-flex align-items-center">
+                    <i class="bi bi-house-door-fill me-2"></i><span>Home</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="portfolio" class="py-5 overflow-hidden">
+        <div class="container text-center">
+            <div class="mb-5">
+                <h2 class="display-4 fw-bold text-primary">TICA - Capstone Project</h2>
+                <p class="text-muted">Click an image to see the phase details</p>
+            </div>
+
+            <div class="carousel-container">
+                <div id="portfolioCarousel" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-toggle="modal" data-bs-target="#projectModal"
+                            onclick="setModal(0)">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Mockup.png?raw=true"
+                                class="portfolio-carousel-img" alt="Phase 1">
+                        </div>
+                        <div class="carousel-item" data-bs-toggle="modal" data-bs-target="#projectModal"
+                            onclick="setModal(1)">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Mockup%20TICA%201.png?raw=true"
+                                class="portfolio-carousel-img" alt="Phase 2">
+                        </div>
+                        <div class="carousel-item" data-bs-toggle="modal" data-bs-target="#projectModal"
+                            onclick="setModal(2)">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Mockup%20OTTIE%201.png?raw=true"
+                                class="portfolio-carousel-img" alt="Phase 3">
+                        </div>
+                        <div class="carousel-item" data-bs-toggle="modal" data-bs-target="#projectModal"
+                            onclick="setModal(3)">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Mockup%20TICA%202%20(1).png?raw=true"
+                                class="portfolio-carousel-img" alt="Phase 4">
+                        </div>
+                        <div class="carousel-item" data-bs-toggle="modal" data-bs-target="#projectModal"
+                            onclick="setModal(4)">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Mockup%20TICA%203.png?raw=true"
+                                class="portfolio-carousel-img" alt="Phase 5">
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#portfolioCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#portfolioCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow">
+                <div class="modal-header border-0 px-4 pt-4">
+                    <h5 class="modal-title fw-bold text-primary" id="modalTitle">Project Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 pb-5">
+                    <div>
+                        <h6 id="modalLabel" class="text-uppercase fw-bold text-muted small mb-2">Phase Detail</h6>
+                        <p id="modalDescription" class="text-dark"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const projectData = [
+        {
+            title: "TICA: The Problem",
+            label: "Problem",
+            content: "Childhood Apraxia of Speech (CAS) is an increasing issue that concerns children unable or having difficulty with their speech, creating a communication barrier during their most critical developmental years. Unlike typical language delays that a child might simply outgrow, CAS is a complex neurological motor disorder where the brain struggles to plan the precise muscle movements of the tongue, lips, and jaw. Currently, there is no medical cure or shortcut to resolve this; the only proven way to build speech fluency is through intensive, high-frequency speech therapy that requires a child to perform hundreds of repetitive vocal drills to rewire neural pathways. This creates a significant problem as the taxing, clinical nature of these repetitions often leads to fatigue, extreme frustration, and emotional withdrawal in young children. To address this, we designed a gamified mobile application that transforms the mandatory labor of speech therapy into an immersive application. By reframing repetitive motor practice as gameplay mechanics—where vocalizing a target word becomes a lesson to teach children how to pronounce words easily making the app to provides a joyful, child-centric environment that encourages the voluntary repetition necessary for progress. This UI/UX solution bridges the gap between clinical necessity and childhood play, turning a daunting physiological struggle into a series of achievable, rewarding wins." 
+        },
+        {
+            title: "TICA: Design Process",
+            label: "Process",
+            content: "The design process for this application was rooted in direct observation of our target audience, focusing on the specific sensory and emotional triggers that keep children engaged in a digital environment. By analyzing what children gravitate toward most, we identified that a cartoony aesthetic—characterized by soft, rounded shapes and a vibrant color palette—was essential to making the interface feel approachable rather than clinical. This direction was further validated by professional speech therapists, who suggested that high-contrast, energetic colors could help maintain a child's focus during the repetitive motor tasks required to treat apraxia. To translate this into a cohesive UI, we developed a custom set of icons designed with a playful, cartoon-inspired style, ensuring that every interactive element felt like part of a familiar animated world. Central to this experience is a friendly mascot who acts as a constant companion and guide, providing a supportive face to the technology. By combining these kid-friendly visual elements with a guided narrative, we created an ecosystem that transforms the frustration of a speech disorder into a fun, visually stimulating journey toward language fluency." 
+        },
+        {
+            title: "TICA: Comparison",
+            label: "Previous Design",
+            content: `The evolution of the project involved a significant pivot during the prototyping phase, as the final result was not exactly the first design we opted towards. Ottie was initially our first design, serving as our foundational draft for the application. However, after undergoing careful reviews and gathering critical feedback from various sources—including specialized speech therapists and our academic professors—we realized a change in direction was necessary.
+                      <br><br>
+                      Through this evaluation, we concluded that while Ottie shared the same core mission, the interface and user flow contained a level of complexity that hindered its kid-friendly appeal. We were afraid that the children might not proceed through each lesson because of these friction points, as any unnecessary cognitive load could lead to frustration rather than progress. Keeping our primary goal of accessibility and joy at the forefront, we opted to scrap this first draft and proceed with TICA.
+                      <br><br>
+                      We created TICA as a more colorful and vibrant version of Ottie, specifically reimagined to prioritize simplicity and visual stimulation. By stripping away the complexity and leaning into a more intuitive, animated experience, we ensured that TICA would not only capture a child's attention but also sustain their motivation throughout their speech journey.` 
+        },
+        {
+            title: "TICA: Solution",
+            label: "The Final Product",
+            content: "To maximize the effectiveness of the intervention, we designed an application focusing on language practice through gamification and a reward system, specifically engineered to combat the high levels of frustration associated with Childhood Apraxia of Speech. By integrating core speech-language pathology principles into a digital playground, we transformed standard phonetic drills into interactive challenges where the act of practicing becomes the primary mechanic for gameplay. The reward system serves as a crucial psychological anchor, utilizing a mix of immediate visual flair, unlockable collectibles, and positive auditory reinforcement to celebrate every attempt a child makes. This strategic gamification ensures that the repetition necessary for motor planning doesn't feel like a repetitive chore, but rather a rewarding pathway toward unlocking new levels and achievements. By centering the experience around these playful incentives, we created a loop of consistent engagement that keeps children motivated to continue their language practice long after traditional methods would have led to fatigue."
+        },
+        {
+            title: "TICA: Conclusion",
+            label: "The Outcome",
+            content: "To address the rising challenge of Childhood Apraxia of Speech (CAS), we developed TICA, a specialized mobile application designed to bridge the gap between rigorous clinical therapy and the developmental needs of children. Recognizing that the only way to solve the speech motor planning deficit is through intensive, repetitive vocal practice—a process that often leads to extreme frustration and drill fatigue, we focused our solution on where the child spends most of their time: within a world of imagination and play. We solved this problem by transforming the work of speech into play through a strategic gamification and reward system. By pivoting from our initial, more complex design (Ottie) to the vibrant, simplified interface of TICA, we removed cognitive barriers and replaced them with a cartoon-inspired aesthetic, high-contrast colors, and a friendly mascot guide. This mascot acts as a bridge between the technology and the user, modeling correct mouth movements and providing immediate, joyful feedback. Through this human-centered design process—informed by speech therapists and academic feedback—we successfully created a tool that encourages the voluntary repetition necessary for language fluency, ensuring that the journey toward communication is no longer a daunting struggle, but an achievable and rewarding adventure."
+        }
+    ];
+
+    function setModal(idx) {
+        const data = projectData[idx];
+        if (!data) return;
+
+        document.getElementById('modalTitle').textContent = data.title;
+        document.getElementById('modalLabel').textContent = data.label;
+        
+        // CHANGED THIS LINE: Use innerHTML so the <br> tags are recognized
+        document.getElementById('modalDescription').innerHTML = data.content;
+    }
+</script>
+</body>
+
+</html>

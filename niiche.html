@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bien Carlo | Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-orange: #6927DA;
+            --dark-bg: #f8f9fa;
+            --nav-height: 70px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+        }
+
+        .text-primary {
+            color: var(--primary-orange) !important;
+        }
+
+        .bg-primary {
+            background-color: var(--primary-orange) !important;
+        }
+
+        #navbar-main {
+            height: var(--nav-height);
+        }
+
+        .nav-link-home {
+            color: #6c757d;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link-home:hover {
+            color: var(--primary-orange);
+        }
+
+        #portfolio {
+            padding-top: calc(var(--nav-height) + 50px) !important;
+        }
+
+        /* --- Carousel Core --- */
+        .carousel-container {
+            position: relative;
+            padding: 0 80px;
+            margin-top: 2rem;
+        }
+
+        .carousel-inner {
+            overflow: visible;
+            display: flex;
+        }
+
+        .carousel-item {
+            flex: 0 0 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0 10px;
+            cursor: pointer;
+        }
+
+        .portfolio-carousel-img {
+            height: 600px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-item:not(.active) {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-orange);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 1;
+            z-index: 20;
+        }
+
+        .carousel-control-prev {
+            left: -60px;
+        }
+
+        .carousel-control-next {
+            right: -60px;
+        }
+
+        @media (max-width: 992px) {
+            .portfolio-carousel-img {
+                height: 450px;
+            }
+
+            .carousel-container {
+                padding: 0 40px;
+            }
+
+            .carousel-control-prev {
+                left: -10px;
+            }
+
+            .carousel-control-next {
+                right: -10px;
+            }
+        }
+
+        /* Card Hover Effect */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .icon-hover:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-circle-sm {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(105, 39, 218, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar-main" class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary fs-4" href="index.html">Bien Carlo &lt;/&gt;</a>
+            <div class="ms-auto">
+                <a href="index.html" class="nav-link-home d-flex align-items-center">
+                    <i class="bi bi-house-door-fill me-2"></i>
+                    <span>Home</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="portfolio" class="py-5 overflow-hidden">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold text-primary">Niiche - UI Design Competition</h2>
+                <p class="text-muted px-3">Click an image to dive deep into the design process</p>
+            </div>
+
+            <div class="carousel-container">
+                <div id="portfolioCarousel" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-toggle="modal" data-bs-target="#projectModal"
+                            onclick="setModal(0)">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Niiche%20Mockup.png?raw=true"
+                                class="portfolio-carousel-img" alt="Niiche">
+                        </div>
+                        <div class="carousel-item" data-bs-toggle="modal" data-bs-target="#projectModal2"
+                            onclick="setModal(1)">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Mockup%20Niiche%20(2).png?raw=true"
+                                class="portfolio-carousel-img" alt="Niiche">
+                        </div>
+                        <div class="carousel-item" data-bs-toggle="modal" data-bs-target="#projectModal3"
+                            onclick="setModal(2)">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Mockup%20Niiche%202%20(1).png?raw=true"
+                                class="portfolio-carousel-img" alt="Niiche">
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#portfolioCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#portfolioCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <section id="contact" class="py-5 bg-gray">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-5">
+                        <h3 class="h4 fw-semibold text-body-emphasis mb-4">Description</h3>
+                        <div class="vstack gap-4">
+                            <div class="d-flex align-items-start">
+                                <div class="icon-circle-sm me-3 flex-shrink-0">
+                                    <i class="bi bi-chat-dots fs-5 text-primary"></i>
+                                </div>
+                                <div>
+                                    <h5 class="h6 mb-0 fw-semibold">Message</h5>
+                                    <p class="text-muted mb-0">After a couple of day the result was out and thankfully I
+                                        was at the podium with one of my friend too! I won the first runner up and I'm
+                                        grateful to be part of such event hosted within the school.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 ms-auto">
+                        <a href="https://www.facebook.com/share/p/1FRZcS9fhP/" target="_blank"
+                            class="card card-hover border-0 shadow-sm text-decoration-none rounded-4">
+                            <div class="card-body p-4 d-flex align-items-center">
+                                <div class="icon-circle-sm bg-primary text-white me-3">
+                                    <i class="bi bi-facebook fs-4"></i>
+                                </div>
+                                <div>
+                                    <h4 class="h6 fw-bold mb-1 text-dark">ISKOnnovation</h4>
+                                    <p class="small text-muted mb-0">Check out the result!</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow">
+                <div class="modal-header border-0 px-4 pt-4">
+                    <h5 class="modal-title fw-bold text-primary" id="modalTitle">Project Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 pb-5">
+                    <div class="mb-4">
+                        <h6 class="text-uppercase fw-bold text-muted small mb-2">The Problem</h6>
+                        <p id="modalProblem" class="text-dark"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="projectModal2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow">
+                <div class="modal-header border-0 px-4 pt-4">
+                    <h5 class="modal-title fw-bold text-primary">Niiche - UI Competition</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 pb-5">
+                    <div class="mb-4">
+                        <h6 class="text-uppercase fw-bold text-muted small mb-2">Design Process</h6>
+                        <p id="modalProcess" class="text-dark"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="projectModal3" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow">
+                <div class="modal-header border-0 px-4 pt-4">
+                    <h5 class="modal-title fw-bold text-primary">Niiche - UI Competition</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 pb-5">
+                    <div class="mb-4">
+                        <h6 class="text-uppercase fw-bold text-muted small mb-2">Conclusion</h6>
+                        <p id="modalConclusion" class="text-dark" style="line-height: 1.6;"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const projectData = [
+            {
+                title: "Niiche Overview",
+                problem: "The challenge was to create a cohesive brand identity for a website focusing on the interface and components of the page, ensuring that every digital aspect resonated with our core task. This process required more than just selecting a color palette; it involved defining a visual language that could communicate our project’s mission through every button, icon, and layout choice. I focused on building a design system where the individual components—such as navigation bars, input fields, and interactive cards—felt like a unified family rather than isolated elements. By aligning the typography, spacing, and micro-interactions with the specific goals of the website, I was able to create an environment where the brand's personality was felt in every click. This attention to detail ensured that the interface did not just look professional, but functioned as a seamless extension of our core objective, providing a high level of trust and clarity for the end user."
+            },
+            {
+                title: "The Design Phase",
+                process: `I designed the website by first doing a research phase to understand the competitive landscape of the digital industry. This involved analyzing what similar websites exist and how they function, identifying the common user flows, layout structures, and feature sets that users expect. By adding these established patterns into my design and making it a whole new interface to navigate on, I was able to innovate on top of a familiar foundation, ensuring that the navigation was both creative and highly functional. 
+                        <br><br>
+                        Additionally, getting inspirations from high-end design galleries and modern web trends allowed me to elevate the aesthetic quality of the project, creating a more visual appealing UI that stands out in a competitive setting. I moved beyond basic templates by considering all the aspects into the design—including typography hierarchy, color theory, and responsive breakpoints—and crafting a design that fits the criteria well. This meticulous approach ensured that the final product was not only a beautiful visual concept but also a robust, user-centric solution that met every requirement of the competition brief.`
+            },
+            {
+                title: "Wrapping Up",
+                conclusion: `This project taught me the importance of scalable design systems and high-fidelity prototyping as well as the importance of a cohesive design that fit well into one another. By developing a structured library of reusable components, I learned how to maintain visual consistency across multiple screens while ensuring that the interface remained flexible enough to adapt to new features. High-fidelity prototyping allowed me to test the actual flow of the user journey, revealing how micro-interactions and transitions are just as vital to the user experience as the static layout itself. Seeing how individual buttons, icons, and typography styles integrated into a unified whole reinforced my understanding of how a strong design system acts as the backbone for any successful digital product.
+                            <br><br>
+                            This competition served as a powerful reminder that UI design is more than just aesthetics; it is the strategic intersection of research, functionality, and visual storytelling. Successfully balancing the technical requirements of the brief with a creative, user-first approach gave me a deeper appreciation for the iterative nature of design. As I move forward, the skills I honed here—specifically in creating harmony within a complex set of components—will serve as a vital foundation for my growth as a designer, allowing me to build digital experiences that are not only visually striking but also deeply intuitive and purposefully crafted.`
+            }
+        ];
+
+        function updateElement(id, content) {
+            const el = document.getElementById(id);
+            if (el) {
+                // CHANGED: Use innerHTML instead of textContent so <br> tags work
+                el.innerHTML = content || "";
+            }
+        }
+
+        function setModal(idx) {
+            const data = projectData[idx];
+            if (!data) return;
+
+            // Updated all calls to support HTML content if needed
+            updateElement('modalTitle', data.title);
+            updateElement('modalProblem', data.problem);
+            updateElement('modalProcess', data.process);
+            updateElement('modalConclusion', data.conclusion);
+        }
+    </script>
+
+</body>
+
+</html>

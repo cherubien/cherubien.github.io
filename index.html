@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bien Carlo | Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        /* Define custom color variables */
+        :root {
+            --bs-primary-rgb: 26, 35, 126;
+            /* #1A237E */
+            --bs-secondary-rgb: 255, 248, 225;
+            /* #FFF8E1 */
+            --bs-warning-rgb: 255, 215, 0;
+            /* #FFD700 */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            /* Required for scrollspy */
+        }
+
+        /* Custom font for the brand */
+        .pacifico-font {
+            font-family: 'Pacifico', cursive;
+        }
+
+        /* Hero Section Gradient */
+        .hero-gradient {
+            background: linear-gradient(135deg, #303F9F 0%, #2575fc 100%);
+        }
+
+        /* Card Hover Effect */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .icon-hover:hover {
+            transform: translateY(-5px);
+            /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); */
+        }
+
+        /* Animations */
+        /* FIX: Added 'forwards' to make animations persist their end state */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.8s ease-in-out forwards;
+        }
+
+        .animate-slide-right {
+            animation: slideRight 0.8s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideRight {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        #animated-title {
+            display: inline-block;
+            min-width: 350px;
+        }
+
+        /* Ensure the cursor animation is defined */
+        @keyframes blink {
+
+            from,
+            to {
+                border-right-color: transparent
+            }
+
+            50% {
+                border-right-color: white;
+            }
+        }
+
+        /* Profile Image Styles */
+        .profile-image-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border: 4px solid #FFD700;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Social Icons in Hero */
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+            overflow: hidden;
+        }
+
+        .social-icon:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        /* Custom Icon Circles for Cards */
+        .icon-circle {
+            width: 64px;
+            height: 64px;
+            background-color: rgba(var(--bs-primary-rgb), 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-circle-sm {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(var(--bs-primary-rgb), 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .skill-icon-item {
+            width: 100px;
+            flex-shrink: 0;
+        }
+
+        .skill-logo {
+            max-height: 50px;
+            width: auto;
+        }
+
+        /* Footer styles */
+        footer a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        footer .social-icon {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        footer .social-icon:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar-main" data-bs-offset="80">
+
+    <!-- Navigation -->
+    <nav id="navbar-main" class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary fs-4" href="#">Bien Carlo &lt;/&gt;</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-5">
+        <div class="container">
+            <div class="row align-items-center" style="min-height: 90vh; padding-top: 80px;">
+                <div class="col-md-6 mb-5 mb-md-0">
+                    <h3 class="fw-light mb-2 animate-fade-in">Hi! I'm Bien </h3>
+                    <h1 class="display-4 fw-bold mb-4 animate-fade-in">
+                        <span id="animated-title">UI/UX Designer</span>
+                    </h1>
+                    <a href="#about"
+                        class="btn btn-warning text-primary px-4 py-2 fw-medium shadow-lg animate-fade-in">GET TO KNOW
+                        ME BETTER</a>
+                    <div class="mt-4">
+                        <a href="https://www.linkedin.com/in/bien-carlo-castillo-03b83634a/" class="social-icon"><i
+                                class="bi bi-linkedin"></i></a>
+                        <a href="https://github.com/cherubien" class="social-icon"><i class="bi bi-github"></i></a>
+                        <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=castillobiencarlo@gmail.com&su=Inquiry&body=Hi%20there,%20I%20am%20contacting%20you%20regarding%20..."
+                            class="social-icon"><i class="bi bi-envelope-fill"></i></a>
+                        <a href="Castillo_Resume.pdf" class="social-icon"><i class="bi bi-file-person-fill"></i></a>
+                    </div>
+                </div>
+                <!-- <div class="col-md-6 text-center">
+                    <div class="profile-image-container">
+                        <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/NewPic.png?raw=true"
+                            alt="Bien Carlo G. Castillo" class="img-fluid rounded-circle shadow-lg profile-image">
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-secondary">
+        <div class="container">
+            <h2 class="display-5 fw-bold text-center text-primary mb-5">About Me</h2>
+            <div class="row g-4">
+                <!-- Card 1: Background -->
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
+                    <div class="card card-hover text-center w-100">
+                        <div class="card-body">
+                            <div class="icon-circle mx-auto mb-4"><i class="bi bi-stars fs-2 text-primary"></i></div>
+                            <h3 class="card-title h5 fw-semibold text-body-emphasis">Background</h3>
+                            <p class="card-text text-align-justify">I'm a UI/UX designer and a Web Developer based in
+                                the Philippines, aiming to provide a seamless blend of aesthetic design and functional
+                                code.</p>
+                        </div>
+                        <div class="card-footer bg-primary bg-opacity-10">My expertice mainly involves designing
+                            interfaces for websites.</div>
+                    </div>
+                </div>
+                <!-- Card 2: Education -->
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
+                    <div class="card card-hover text-center w-100">
+                        <div class="card-body">
+                            <div class="icon-circle mx-auto mb-4"><i
+                                    class="bi bi-mortarboard-fill fs-2 text-primary"></i></div>
+                            <h3 class="card-title h5 fw-semibold text-body-emphasis">Education</h3>
+                            <p class="card-text text-align-justify">I'm an Information Technology graduate from
+                                Polytechnic University of the Philippines, Sto. Tomas Campus.</p>
+                        </div>
+                        <div class="card-footer bg-primary bg-opacity-10">I have developed and honed my skills in
+                            designing interfaces.</div>
+                    </div>
+                </div>
+                <!-- Card 3: Interests -->
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
+                    <div class="card card-hover text-center w-100">
+                        <div class="card-body">
+                            <div class="icon-circle mx-auto mb-4"><i
+                                    class="bi bi-bookmark-heart-fill fs-2 text-primary"></i></div>
+                            <h3 class="card-title h5 fw-semibold text-body-emphasis">Interests</h3>
+                            <p class="card-text text-align-justify">In my free time, I mainly expand my skills in
+                                designing and coding as well as my artistic skills.</p>
+                        </div>
+                        <div class="card-footer bg-primary bg-opacity-10">Designing, Developing, and Crafts are one of
+                            the many skills I have.</div>
+                    </div>
+                </div>
+                <!-- Card 4: Hobbies -->
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
+                    <div class="card card-hover text-center w-100">
+                        <div class="card-body">
+                            <div class="icon-circle mx-auto mb-4"><i class="bi bi-dpad-fill fs-2 text-primary"></i>
+                            </div>
+                            <h3 class="card-title h5 fw-semibold text-body-emphasis">Hobbies</h3>
+                            <p class="card-text text-align-justify">A few of my hobbies are playing games and making
+                                art. These creative outlets help me relax and innovate.</p>
+                        </div>
+                        <div class="card-footer bg-primary bg-opacity-10">Gaming enhances my problem-solving skills, art
+                            fuels creativity.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="display-5 fw-bold text-center text-primary mb-5">My Portfolio</h2>
+            <div class="row g-4">
+                <!-- Project 1 -->
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="card card-hover w-100 overflow-hidden">
+                        <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Mockup.png?raw=true"
+                            class="card-img-top" alt="TICA">
+                        <div class="card-body">
+                            <h3 class="card-title h5 fw-semibold">TICA - Capstone Project</h3>
+                            <p class="card-text">A fun, interactive mobile app that helps children with Apraxia practice
+                                and learn to improve their speaking and basic verbal skills through engaging daily
+                                exercises.</p>
+                            <span
+                                class="badge text-bg-light border border-primary-subtle text-primary-emphasis rounded-pill">Figma</span>
+                            <span
+                                class="badge text-bg-light border border-primary-subtle text-primary-emphasis rounded-pill">Phyton</span>
+                            <span
+                                class="badge text-bg-light border border-primary-subtle text-primary-emphasis rounded-pill">Kivy
+                                Framework</span>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <a href="tica.html"
+                                class="text-primary fw-medium text-decoration-none">View Project <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="card card-hover w-100 overflow-hidden">
+                        <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Niiche%20Mockup.png?raw=true"
+                            class="card-img-top" alt="Project 2">
+                        <div class="card-body">
+                            <h3 class="card-title h5 fw-semibold">Niiche - ISKOnnovation: EUREKA 2025 UI Design
+                                Competition</h3>
+                            <p class="card-text">A university competition dedicated to UI excellence, where we designers were judged on our ability to think of brand identity with intuitive navigation in a fast-paced, competitive environment.</p>
+                            <span
+                                class="badge text-bg-light border border-primary-subtle text-primary-emphasis rounded-pill">Figma</span>
+                            <span
+                                class="badge text-bg-light border border-primary-subtle text-primary-emphasis rounded-pill">Prototyping</span>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <a href="niiche.html" class="text-primary fw-medium text-decoration-none">View Project <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="card card-hover w-100 overflow-hidden">
+                        <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Excell%20Mockup.png?raw=true"
+                            class="card-img-top" alt="Project 3">
+                        <div class="card-body">
+                            <h3 class="card-title h5 fw-semibold">Revamped Excell Website</h3>
+                            <p class="card-text">Tasked with a complete revamp, I alongside my co-intern audited the existing platform to identify inconsistencies between the web experience and the brand's core values.</p>
+                            <span
+                                class="badge text-bg-light border border-primary-subtle text-primary-emphasis rounded-pill">Figma</span>
+                            <span
+                                class="badge text-bg-light border border-primary-subtle text-primary-emphasis rounded-pill">Plasmic</span>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <a href="excell.html" class="text-primary fw-medium text-decoration-none">View Project <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- <div class="text-center mt-5">
+                <a href="#" class="btn btn-primary px-4 py-2 fw-medium shadow">View All Projects</a>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 bg-secondary">
+        <div class="container">
+            <h2 class="display-5 fw-bold text-center text-primary mb-5">My Skills</h2>
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <h3 class="h4 fw-semibold text-body-emphasis mb-4">Technical Skills</h3>
+                    <div class="d-flex justify-content-around align-items-center flex-wrap p-3"> 
+
+                        <div class="text-center mx-2 my-2 skill-icon-item">
+                            <img src="https://cdn.sanity.io/images/599r6htc/regionalized/46a76c802176eb17b04e12108de7e7e0f3736dc6-1024x1024.png"
+                                alt="Figma Logo" class="icon-hover img-fluid skill-logo mb-1">
+                            <p class="small fw-medium mb-0">Figma</p>
+                        </div>
+
+                        <div class="text-center mx-2 my-2 skill-icon-item">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/html-5.png?raw=true"
+                                alt="HTML Logo" class="icon-hover img-fluid skill-logo mb-1">
+                            <p class="small fw-medium mb-0">HTML</p>
+                        </div>
+
+                        <div class="text-center mx-2 my-2 skill-icon-item">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/css-3.png?raw=true"
+                                alt="CSS Logo" class="icon-hover img-fluid skill-logo mb-1">
+                            <p class="small fw-medium mb-0">CSS</p>
+                        </div>
+
+                        <div class="text-center mx-2 my-2 skill-icon-item">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/js.png?raw=true"
+                                alt="JavaScript Logo" class="icon-hover img-fluid skill-logo mb-1">
+                            <p class="small fw-medium mb-0">JavaScript</p>
+                        </div>
+
+                        <!-- <div class="text-center mx-2 my-2 skill-icon-item">
+                            <img src="https://download.logo.wine/logo/React_(web_framework)/React_(web_framework)-Logo.wine.png"
+                                alt="React Logo" class="icon-hover img-fluid skill-logo mb-1">
+                            <p class="small fw-medium mb-0">React</p>
+                        </div> -->
+
+                    </div>
+
+                    <div class="d-flex justify-content-around align-items-center flex-wrap p-3">
+
+                        <div class="text-center mx-2 my-2 skill-icon-item">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/VStudio%20Icon.png?raw=true"
+                                alt="VSCode Logo" class="icon-hover img-fluid skill-logo mb-1">
+                            <p class="small fw-medium mb-0">Visual Studio</p>
+                        </div>
+
+                        <div class="text-center mx-2 my-2 skill-icon-item">
+                            <img src="https://cdn.shopify.com/app-store/listing_images/4d607fca82af8d8553224e715eb16617/icon/CP7Z_quEhYkDEAE=.png"
+                                alt="Canva Logo" class="icon-hover img-fluid skill-logo mb-1">
+                            <p class="small fw-medium mb-0">Canva</p>
+                        </div>
+
+                        <div class="text-center mx-2 my-2 skill-icon-item">
+                            <img src="https://www.plasmic.app/svg/logo.svg" alt="Plasmic Logo"
+                                class="icon-hover img-fluid skill-logo mb-1">
+                            <p class="small fw-medium mb-0">Plasmic</p>
+                        </div>
+
+                        <div class="text-center mx-2 my-2 skill-icon-item">
+                            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow@2x.png"
+                                alt="Bootstrap Logo" class="icon-hover img-fluid skill-logo mb-1">
+                            <p class="small fw-medium mb-0">Bootstrap</p>
+                        </div>
+
+                        <!-- <div class="text-center mx-2 my-2 skill-icon-item">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Kivy%20Logo.png?raw=true"
+                                alt="Kivy Framework Logo" class="icon-hover img-fluid skill-logo mb-1">
+                            <p class="small fw-medium mb-0">Kivy</p>
+                        </div> -->
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <h3 class="h4 fw-semibold text-body-emphasis mb-4">Soft Skills</h3>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card card-hover h-100">
+                                <div class="card-body d-flex flex-column align-items-center text-center">
+                                    <div class="icon-circle-sm mb-3"><i class="bi bi-people fs-4 text-primary"></i>
+                                    </div>
+                                    <h4 class="h6 fw-semibold">Team Collaboration</h4>
+                                    <p class="small">Effective communication and cooperation in group projects.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card card-hover h-100">
+                                <div class="card-body d-flex flex-column align-items-center text-center">
+                                    <div class="icon-circle-sm mb-3"><i class="bi bi-lightbulb fs-4 text-primary"></i>
+                                    </div>
+                                    <h4 class="h6 fw-semibold">Problem Solving</h4>
+                                    <p class="small">Analytical thinking and creative solution development.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card card-hover h-100">
+                                <div class="card-body d-flex flex-column align-items-center text-center">
+                                    <div class="icon-circle-sm mb-3"><i class="bi bi-clock fs-4 text-primary"></i></div>
+                                    <h4 class="h6 fw-semibold">Time Management</h4>
+                                    <p class="small">Efficient prioritization and deadline adherence.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card card-hover h-100">
+                                <div class="card-body d-flex flex-column align-items-center text-center">
+                                    <div class="icon-circle-sm mb-3"><i class="bi bi-easel fs-4 text-primary"></i></div>
+                                    <h4 class="h6 fw-semibold">Communication</h4>
+                                    <p class="small">Clear and effective verbal and written expression.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="display-5 fw-bold text-center text-primary mb-5">Get In Touch</h2>
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <h3 class="h4 fw-semibold text-body-emphasis mb-4">Contact Information</h3>
+                    <div class="vstack gap-4">
+                        <div class="d-flex align-items-start">
+                            <div class="icon-circle-sm me-3 flex-shrink-0"><i
+                                    class="bi bi-envelope fs-5 text-primary"></i></div>
+                            <div>
+                                <h5 class="h6 mb-0">Email</h5>
+                                <p class="text-muted mb-0">castillobiencarlo@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <div class="icon-circle-sm me-3 flex-shrink-0"><i
+                                    class="bi bi-telephone fs-5 text-primary"></i></div>
+                            <div>
+                                <h5 class="h6 mb-0">Phone</h5>
+                                <p class="text-muted mb-0">+63 956 521 0824</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="h4 fw-semibold text-body-emphasis mb-4"></h3>
+                    <div class="row g-4">
+                        <div class="col-md-6"><a href="https://www.linkedin.com/in/bien-carlo-castillo-03b83634a/"
+                                target="_blank" class="card card-hover h-100 text-decoration-none">
+                                <div class="card-body d-flex flex-column align-items-center text-center">
+                                    <div class="icon-circle-sm mb-3"><i class="bi bi-linkedin fs-4 text-primary"></i>
+                                    </div>
+                                    <h4 class="h6 fw-semibold">LinkedIn</h4>
+                                    <p class="small">Let's connect!</p>
+                                </div>
+                            </a></div>
+                        <div class="col-md-6"><a href="Castillo_Resume.pdf" download="Castillo_Resume.pdf"
+                                class="card card-hover h-100 text-decoration-none">
+                                <div class="card-body d-flex flex-column align-items-center text-center">
+                                    <div class="icon-circle-sm mb-3"><i
+                                            class="bi bi-file-person-fill fs-4 text-primary"></i></div>
+                                    <h4 class="h6 fw-semibold">Resumé</h4>
+                                    <p class="small">Review my resumé here.</p>
+                                </div>
+                            </a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-5">
+        <div class="container text-center text-md-start">
+            <div class="row gy-4">
+                <div class="col-md-4">
+                    <h2 class="fw-bold">Bien Carlo &lt;/&gt;</h2>
+                    <p class="text-white-50">UI/UX Designer</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-decoration-none">Home</a></li>
+                        <li><a href="#about" class="text-decoration-none">About</a></li>
+                        <li><a href="#portfolio" class="text-decoration-none">Portfolio</a></li>
+                        <li><a href="#contact" class="text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Connect</h5>
+                    <div>
+                        <a href="https://www.linkedin.com/in/bien-carlo-castillo-03b83634a/" class="social-icon"><i
+                                class="bi bi-linkedin"></i></a>
+                        <a href="https://github.com/cherubien" class="social-icon"><i class="bi bi-github"></i></a>
+                        <a href="https://www.instagram.com/cherubien_/" class="social-icon"><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="https://www.facebook.com/bienny.d.bunny/" class="social-icon"><i
+                                class="bi bi-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 border-white-50">
+            <div class="text-center">
+                <p class="text-white-50 mb-0">&copy; 2025 Bien Carlo G. Castillo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Scroll reveal animation for cards
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.card-hover, .progress-bar, .vstack > .d-flex');
+                const triggerBottom = window.innerHeight / 1.1;
+
+                elements.forEach(el => {
+                    const elTop = el.getBoundingClientRect().top;
+                    if (elTop < triggerBottom) {
+                        el.classList.add('animate-fade-in');
+                    }
+                });
+            };
+
+            // Add animation classes for scroll reveal
+            const elementsToAnimate = document.querySelectorAll('.card-hover, .progress-bar, .vstack > .d-flex');
+            elementsToAnimate.forEach(el => {
+                el.style.opacity = '0'; // Hide initially
+            });
+
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Initial check on load
+        });
+
+        // Job Title Animation
+        // --- Configuration ---
+        const words = ["UI/UX Designer", "Web Designer", "Graphic Designer", "Front-End Developer"];
+        const typingSpeed = 100; // Speed in milliseconds (ms) per character
+        const deletingSpeed = 70; // Speed in ms for deleting
+        const delayBetweenWords = 1500; // Pause in ms before starting the next word
+
+        // --- State Variables ---
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const titleElement = document.getElementById('animated-title');
+
+        // --- Core Animation Function ---
+        function typeWriter() {
+            const currentWord = words[wordIndex];
+
+            if (isDeleting) {
+                // DELETING PHASE
+                titleElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                // TYPING PHASE
+                titleElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            // --- Logic to switch phases/words ---
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                // Word is fully typed, start deleting after a delay
+                isDeleting = true;
+                setTimeout(typeWriter, delayBetweenWords);
+            } else if (isDeleting && charIndex === 0) {
+                // Word is fully deleted, move to the next word
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length; // Cycle to the next word
+                setTimeout(typeWriter, typingSpeed); // Wait slightly less before starting new word
+            } else {
+                // Continue typing or deleting
+                const speed = isDeleting ? deletingSpeed : typingSpeed;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        // Start the animation when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            if (titleElement) {
+                typeWriter();
+            }
+        });
+    </script>
+</body>
+
+</html>

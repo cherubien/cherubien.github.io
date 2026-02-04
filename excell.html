@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bien Carlo | Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-orange: #3E8B56;
+            --dark-bg: #f8f9fa;
+            --nav-height: 70px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+        }
+
+        .text-primary { color: var(--primary-orange) !important; }
+        .bg-primary { background-color: var(--primary-orange) !important; }
+
+        #navbar-main { height: var(--nav-height); }
+        .nav-link-home { color: #6c757d; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        .nav-link-home:hover { color: var(--primary-orange); }
+
+        #portfolio { padding-top: calc(var(--nav-height) + 50px) !important; }
+
+        /* --- Carousel Core --- */
+        .carousel-container { position: relative; padding: 0 80px; margin-top: 2rem; }
+        .carousel-inner { overflow: visible; display: flex; }
+        .carousel-item { flex: 0 0 100%; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); padding: 0 10px; cursor: pointer; }
+        .portfolio-carousel-img {
+            height: 600px; width: 100%; object-fit: cover; border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+        .carousel-item:not(.active) { opacity: 0.3; pointer-events: none; }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 50px; height: 50px; background-color: var(--primary-orange);
+            border-radius: 50%; top: 50%; transform: translateY(-50%); opacity: 1; z-index: 20;
+        }
+        .carousel-control-prev { left: -60px; }
+        .carousel-control-next { right: -60px; }
+
+        @media (max-width: 992px) {
+            .portfolio-carousel-img { height: 450px; }
+            .carousel-container { padding: 0 40px; }
+            .carousel-control-prev { left: -10px; }
+            .carousel-control-next { right: -10px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar-main" class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary fs-4" href="index.html">Bien Carlo &lt;/&gt;</a>
+            <div class="ms-auto">
+                <a href="index.html" class="nav-link-home d-flex align-items-center">
+                    <i class="bi bi-house-door-fill me-2"></i><span>Home</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="portfolio" class="py-5 overflow-hidden">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold text-primary">Excell Revamped UI</h2>
+                <p class="text-muted px-3">Click an image to dive deep into the design process</p>
+            </div>
+
+            <div class="carousel-container">
+                <div id="portfolioCarousel" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-toggle="modal" data-bs-target="#projectModal" onclick="setModal(0)">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Excell%20Mockup.png?raw=true" class="portfolio-carousel-img" alt="Excell">
+                        </div>
+                        <div class="carousel-item" data-bs-toggle="modal" data-bs-target="#projectModal2" onclick="setModal(1)">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Mockup%20Excell.png?raw=true" class="portfolio-carousel-img" alt="Excell">
+                        </div>
+                        <div class="carousel-item" data-bs-toggle="modal" data-bs-target="#projectModal3" onclick="setModal(2)">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Mockup%20Excell%201.png?raw=true" class="portfolio-carousel-img" alt="Excell">
+                        </div>
+                        <div class="carousel-item" data-bs-toggle="modal" data-bs-target="#projectModal4" onclick="setModal(3)">
+                            <img src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Mockup%20Excell%202.png?raw=true" class="portfolio-carousel-img" alt="Excell">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow">
+                <div class="modal-header border-0 px-4 pt-4">
+                    <h5 class="modal-title fw-bold text-primary" id="modalTitle">Project Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 pb-5">
+                    <div class="mb-4">
+                        <h6 class="text-uppercase fw-bold text-muted small mb-2">The Problem</h6>
+                        <p id="modalProblem" class="text-dark"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="projectModal2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow">
+                <div class="modal-header border-0 px-4 pt-4">
+                    <h5 class="modal-title fw-bold text-primary">Excell</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 pb-5">
+                    <div class="mb-4">
+                        <h6 class="text-uppercase fw-bold text-muted small mb-2">Design Process</h6>
+                        <p id="modalProcess" class="text-dark"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="projectModal3" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow">
+                <div class="modal-header border-0 px-4 pt-4">
+                    <h5 class="modal-title fw-bold text-primary">Excell</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 pb-5">
+                    <div class="mb-4">
+                        <h6 class="text-uppercase fw-bold text-muted small mb-2">The Solution</h6>
+                        <p id="modalSolution" class="text-dark"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="projectModal4" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow">
+                <div class="modal-header border-0 px-4 pt-4">
+                    <h5 class="modal-title fw-bold text-primary">Excell</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 pb-5">
+                    <div class="mb-4">
+                        <h6 class="text-uppercase fw-bold text-muted small mb-2">Conclusion</h6>
+                        <p id="modalConclusion" class="text-dark"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const projectData = [
+            {
+                title: "Excell",
+                problem: "The challenge was to create a cohesive brand identity for a tech startup.",
+                process: "Focused on a 'tech-forward' aesthetic.",
+                conclusion: "Finalist in the competition."
+            },
+            {
+                title: "The Design Phase",
+                problem: "How to simplify complex navigation?",
+                process: "My design focused on gamification.",
+                conclusion: "User retention improved by 20% in testing."
+            },
+            {
+                title: "Wrapping Up",
+                problem: "Final delivery constraints.",
+                process: "Cleaned up the Figma workspace for handoff.",
+                solution: "I implemented a new grid system that reduced load times by 30%.", // Solution for slide 3
+                conclusion: "This project taught me the importance of scalable design systems."
+            },
+            {
+                title: "Wrapping Up",
+                problem: "Final delivery constraints.",
+                process: "Cleaned up the Figma workspace.",
+                conclusion: "High-fidelity prototyping complete."
+            }
+        ];
+
+        function updateElement(id, content) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.textContent = content || "";
+            }
+        }
+
+        function setModal(idx) {
+            const data = projectData[idx];
+            if (!data) return;
+
+            // Shared update logic
+            updateElement('modalTitle', data.title);
+            updateElement('modalProblem', data.problem);
+            updateElement('modalProcess', data.process);
+            updateElement('modalSolution', data.solution);
+            updateElement('modalConclusion', data.conclusion);
+        }
+    </script>
+</body>
+</html>
