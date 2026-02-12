@@ -210,7 +210,7 @@
         function updateElement(id, content) {
             const el = document.getElementById(id);
             if (el) {
-                el.textContent = content || "";
+                el.innerHTML = content || "";
             }
         }
 
