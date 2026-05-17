@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Excell Website Revamp Case Study | Bien Carlo</title>
+  <title>Excell Website Revamp | Bien Carlo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -396,7 +396,8 @@
       }
 
       .nav-cta {
-        margin-right: 1.75rem;
+        margin-right: 1rem;
+        font-size: 0.72rem; padding: 0.4rem 0.9rem;
       }
 
       .nav-links {
@@ -608,22 +609,22 @@
     }
 
     @media (max-width: 768px) {
-      .results-stats {
-        grid-template-columns: 1fr;
-      }
+      .results-stats {grid-template-columns: 1fr; gap: 1.25rem;;}
+      .stat-card { padding: 2rem 1.5rem; }
+      .stat-number { font-size: 1.1rem; }
     }
 
     .stat-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 2.5rem;
+      padding: 2rem 1.5rem;
       text-align: center;
     }
 
     .stat-number {
       font-family: var(--display);
-      font-size: 30px;
+      font-size: 1.1rem;
       font-weight: 800;
       color: var(--accent4);
       letter-spacing: -0.03em;
