@@ -177,14 +177,16 @@
 
   /* ===== MARQUEE STRIP ===== */
   .marquee{
-    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    border-top:1px solid var(--line); 
+    border-bottom:1px solid var(--line);
     background:var(--card);
-    padding:1.1rem 0; overflow:hidden; white-space:nowrap;
+    padding:1.1rem 0; 
+    overflow:hidden; 
+    white-space:nowrap;
   }
   .marquee-track{
     display:flex;
     width:max-content;
-    gap:3rem;
     flex-wrap:nowrap;
     will-change:transform;
     animation:scrollLeft 22s linear infinite;
@@ -196,12 +198,12 @@
     color:var(--ink-soft);
     display:inline-flex;
     align-items:center;
-    gap:.7rem;
   }
   .marquee-track span::after{
     content:'•';
     color:var(--sky-deep);
     margin-left:3rem;
+    margin-right: 3rem;
     flex-shrink:0;
   }
   @keyframes scrollLeft{
@@ -378,6 +380,14 @@
 
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
+    <span>Milky &amp; Fizzy</span>
+    <span>4 Flavors</span>
+    <span>Made in Korea</span>
+    <span>Ice-Cold Refreshment</span>
+    <span>Milky &amp; Fizzy</span>
+    <span>4 Flavors</span>
+    <span>Made in Korea</span>
+    <span>Ice-Cold Refreshment</span>
     <span>Milky &amp; Fizzy</span>
     <span>4 Flavors</span>
     <span>Made in Korea</span>
