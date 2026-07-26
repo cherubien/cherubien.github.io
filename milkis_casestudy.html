@@ -220,7 +220,8 @@
     min-height:360px; padding:1rem 0 2rem;
   }
   .about-blob{
-    position:absolute; width:360px; height:360px;
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:min(82vw, 360px); aspect-ratio:1 / 1; height:auto;
     background:var(--sky); opacity:.5;
     border-radius:60% 40% 50% 50% / 50% 60% 40% 50%;
     z-index:0;
