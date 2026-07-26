@@ -215,14 +215,28 @@
   #about{
     padding:7rem 4rem; display:grid; grid-template-columns:.9fr 1.1fr; gap:4rem; align-items:center;
   }
-  .about-visual{ position:relative; display:flex; justify-content:center; }
+  .about-visual{
+    position:relative; display:flex; justify-content:center; align-items:center;
+    min-height:360px; padding:1rem 0 2rem;
+  }
   .about-blob{
-    position:absolute; width:340px; height:340px;
-    background:var(--sky); opacity:.6;
+    position:absolute; width:360px; height:360px;
+    background:var(--sky); opacity:.5;
     border-radius:60% 40% 50% 50% / 50% 60% 40% 50%;
     z-index:0;
   }
-  .about-visual img{ position:relative; z-index:1; width:260px; margin:auto; }
+  .about-visual .about-logo,
+  .about-visual .about-mascot{
+    position:absolute; left:50%; transform:translate(-50%,-50%); z-index:2; pointer-events:none;
+    max-width:100%;
+  }
+  .about-visual .about-logo{
+    top:25%; width:min(58vw, 330px); max-width:504px; margin:0;
+  }
+  .about-visual .about-mascot{
+    top:50%; width:min(46vw, 300px); max-width:360px; margin:0;
+  }
+  .about-copy{ position:relative; z-index:2; }
   .section-label{
     display:inline-flex; align-items:center; gap:.5rem;
     font-size:.78rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
@@ -318,12 +332,28 @@
     .hero-visual{ order:-1; min-height:340px; }
     .hero-blob{ width:90vw; right:-10%; top:-4%; }
     #about,#flavors{ padding:4rem 1.6rem; }
+    .about-visual{ min-height:300px; margin-bottom:1rem; }
     #cta{ margin:3rem 1.6rem; padding:3rem 1.8rem; flex-direction:column; text-align:center; }
     footer{ padding:2rem 1.6rem; flex-direction:column; text-align:center; }
   }
+  /* @media(max-width:560px){
+    .flavor-grid{ grid-template-columns:1fr; }
+    .stat-row{ gap:1.4rem; }
+    .about-visual{ min-height:240px; padding-bottom:1rem; margin-bottom:1rem; }
+    .about-blob{ width:min(82vw, 280px); height:min(82vw, 280px); }
+    .about-visual .about-logo{ width:min(54vw, 300px); top:25%; }
+    .about-visual .about-mascot{ width:min(42vw, 260px); top:58%; }
+    .about-copy{ margin-top:.25rem; }
+  } */
+
   @media(max-width:560px){
     .flavor-grid{ grid-template-columns:1fr; }
     .stat-row{ gap:1.4rem; }
+    .about-visual{ width:100%; min-height:220px; padding-bottom:1rem; margin-bottom:1rem; }
+    .about-blob{ width:min(78vw, 280px); }
+    .about-visual .about-logo{ width:min(54vw, 300px); top:25%; }
+    .about-visual .about-mascot{ width:min(42vw, 260px); top:58%; }
+    .about-copy{ margin-top:.25rem; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -402,9 +432,10 @@
 <section id="about">
   <div class="about-visual reveal">
     <div class="about-blob" aria-hidden="true"></div>
-    <img src="https://github.com/cherubien/Milkis/blob/main/Milkis_name.png?raw=true" alt="Milkis logo">
+    <img class="about-logo" src="https://github.com/cherubien/Milkis/blob/main/Milkis_name.png?raw=true" alt="Milkis logo">
+    <img class="about-mascot" src="https://github.com/cherubien/SAM_Thumbnail/blob/main/Milkis%20Mascot.png?raw=true" alt="Milkis mascot">
   </div>
-  <div class="reveal">
+  <div class="about-copy reveal">
     <div class="section-label">About the drink</div>
     <h2>Where soda gets its fizz, and milk gets its cool.</h2>
     <p>Milkis is a carbonated milk beverage that shouldn't work — and somehow works perfectly. Underneath the fizz is a smooth, creamy body that softens every bubble into something closer to dessert than soda.</p>
