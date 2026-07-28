@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TimTim — Refer a Friend</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gray:      #E5E2E1;
+    --gray-deep: #D6D1CE;
+    --orange:    #E39776;
+    --orange-deep: #C97952;
+    --ink:       #2B2724;
+    --ink-soft:  #6B6560;
+    --card:      #FBF8F5;
+    --stamp-green: #5F7A5C;
+    --line: rgba(43,39,36,0.28);
+    --focus: #A85A36;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--gray);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3, .signage{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    letter-spacing:0.01em;
+    text-transform:uppercase;
+    margin:0;
+  }
+  .mono{ font-family:'Space Mono', monospace; }
+
+  a{ color:inherit; }
+
+  ::selection{ background:var(--orange); color:var(--ink); }
+
+  :focus-visible{
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 28px; }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; }
+  .logo{
+    display:flex; align-items:baseline; gap:6px;
+    font-family:'Anton', sans-serif;
+    font-size:26px;
+  }
+  .logo span{ color:var(--orange-deep); }
+  .nav-tag{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:0.06em;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:80px 0 60px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 42px 42px;
+    opacity:0.35;
+    mask-image: radial-gradient(ellipse 70% 60% at 60% 30%, black 30%, transparent 75%);
+  }
+  .hero-inner{ position:relative; display:grid; grid-template-columns: 1.15fr 0.85fr; gap:48px; align-items:center; }
+  .eyebrow-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Space Mono', monospace;
+    font-size:12px; letter-spacing:0.08em;
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:6px 12px;
+    border-radius:3px;
+    margin-bottom:22px;
+  }
+  .eyebrow-tag .dot{ width:7px; height:7px; border-radius:50%; background:var(--stamp-green); display:inline-block; }
+  h1.hero-title{
+    font-size:clamp(42px, 6.2vw, 78px);
+    line-height:0.96;
+    color:var(--ink);
+  }
+  h1.hero-title .accent{ color:var(--orange-deep); }
+  .hero-sub{
+    margin-top:22px;
+    max-width:46ch;
+    font-size:18px;
+    line-height:1.55;
+    color:var(--ink-soft);
+  }
+  .hero-cta{ margin-top:34px; display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+  .btn{
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:0.03em;
+    padding:15px 26px;
+    border-radius:3px;
+    border:2px solid var(--ink);
+    background:var(--orange);
+    color:var(--ink);
+    cursor:pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    text-decoration:none;
+    display:inline-block;
+  }
+  .btn:hover{ transform:translate(-2px,-2px); box-shadow:4px 4px 0 var(--ink); }
+  .btn.ghost{ background:transparent; }
+  .hero-note{ font-size:13px; color:var(--ink-soft); font-family:'Space Mono',monospace; }
+
+  /* hero price-tag illustration */
+  .tag-stack{ position:relative; height:340px; }
+  .price-tag{
+    position:absolute;
+    background:var(--card);
+    border:2px solid var(--ink);
+    border-radius:6px;
+    padding:20px 22px;
+    width:230px;
+    box-shadow: 5px 5px 0 var(--line);
+  }
+  .price-tag::before{
+    content:'';
+    position:absolute; left:-11px; top:50%; transform:translateY(-50%);
+    width:20px; height:20px; border-radius:50%;
+    background:var(--gray); border:2px solid var(--ink);
+  }
+  .price-tag.t1{ top:0; right:40px; transform:rotate(4deg); }
+  .price-tag.t2{ top:150px; right:150px; transform:rotate(-6deg); background:var(--orange); }
+  .price-tag .tag-label{ font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.06em; color:var(--ink-soft); }
+  .price-tag.t2 .tag-label{ color:rgba(43,39,36,0.65); }
+  .price-tag .tag-value{ font-family:'Anton',sans-serif; font-size:30px; margin-top:6px; }
+
+  /* ---------- HOW IT WORKS ---------- */
+  .steps-section{ padding:70px 0; border-top:1px solid var(--line); }
+  .section-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; margin-bottom:40px; }
+  .section-head h2{ font-size:clamp(28px,3.6vw,42px); }
+  .section-head p{ color:var(--ink-soft); max-width:38ch; font-size:15px; }
+  .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .step{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:26px;
+    position:relative;
+  }
+  .step .num{
+    font-family:'Anton',sans-serif;
+    font-size:44px;
+    color:var(--gray-deep);
+    -webkit-text-stroke: 1.5px var(--ink);
+    color:transparent;
+    line-height:1;
+  }
+  .step h3{ font-size:19px; margin-top:14px; }
+  .step p{ margin-top:8px; font-size:14.5px; color:var(--ink-soft); line-height:1.5; }
+
+  /* ---------- FORM SECTION ---------- */
+  .form-section{ padding:70px 0 100px; border-top:1px solid var(--line); }
+  .form-layout{
+    display:grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap:0;
+    align-items:start;
+    background:var(--card);
+    border:2px solid var(--ink);
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow: 8px 8px 0 var(--line);
+  }
+  .form-side{ padding:44px; }
+  .perforation{
+    position:relative;
+    border-left:2px dashed var(--ink);
+  }
+  .perforation::before, .perforation::after{
+    content:'';
+    position:absolute; left:-11px;
+    width:20px; height:20px;
+    background:var(--gray);
+    border-radius:50%;
+  }
+  .perforation::before{ top:-11px; }
+  .perforation::after{ bottom:-11px; }
+
+  .form-kicker{ font-family:'Space Mono',monospace; font-size:12px; color:var(--ink-soft); letter-spacing:0.08em; margin-bottom:6px; }
+  .form-side h2{ font-size:30px; margin-bottom:26px; }
+
+  fieldset{ border:none; padding:0; margin:0 0 30px; }
+  legend{
+    font-family:'Space Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.05em;
+    color:var(--ink);
+    background:var(--gray);
+    padding:4px 10px;
+    border-radius:3px;
+    margin-bottom:16px;
+  }
+  .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+  .field{ margin-bottom:16px; }
+  .field label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .field input, .field textarea{
+    width:100%;
+    font-family:'Work Sans',sans-serif;
+    font-size:15px;
+    padding:12px 14px;
+    border:1.5px solid var(--line);
+    border-radius:5px;
+    background:#fff;
+    color:var(--ink);
+    transition:border-color 0.15s ease;
+  }
+  .field input:focus, .field textarea:focus{ border-color:var(--orange-deep); }
+  .field textarea{ resize:vertical; min-height:90px; line-height:1.5; }
+  .char-count{ font-size:12px; color:var(--ink-soft); text-align:right; margin-top:4px; font-family:'Space Mono',monospace; }
+  .err{ color:#A6431F; font-size:12.5px; margin-top:5px; min-height:14px; font-weight:600; }
+
+  .permission-box{
+    background:var(--orange);
+    border:1.5px solid var(--ink);
+    border-radius:7px;
+    padding:18px 20px;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    margin-bottom:26px;
+  }
+  .permission-box input[type=checkbox]{
+    width:20px; height:20px; margin-top:2px; accent-color:var(--ink); flex-shrink:0; cursor:pointer;
+  }
+  .permission-box label{ font-size:14px; line-height:1.5; cursor:pointer; }
+  .permission-box strong{ display:block; font-family:'Space Mono',monospace; font-size:12.5px; letter-spacing:0.04em; margin-bottom:3px; }
+
+  .submit-row{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .submit-row .btn{ min-width:200px; text-align:center; }
+
+  /* ---------- RECEIPT PREVIEW ---------- */
+  .receipt-wrap{ padding:44px 36px; background:var(--gray); }
+  .receipt-sticky{ position:sticky; top:24px; }
+  .receipt{
+    background:#fff;
+    border:1px solid var(--line);
+    padding:26px 22px 22px;
+    font-family:'Space Mono',monospace;
+    font-size:12.5px;
+    color:var(--ink);
+    box-shadow: 0 8px 22px rgba(43,39,36,0.14);
+    position:relative;
+  }
+  .receipt::after{
+    content:'';
+    position:absolute; left:0; right:0; bottom:-9px; height:18px;
+    background:
+      linear-gradient(-45deg, var(--gray) 8px, transparent 0),
+      linear-gradient(45deg, var(--gray) 8px, transparent 0);
+    background-size: 16px 16px;
+    background-position: bottom;
+    background-repeat:repeat-x;
+  }
+  .receipt-title{ text-align:center; font-family:'Anton',sans-serif; font-size:20px; letter-spacing:0.03em; }
+  .receipt-sub{ text-align:center; font-size:11px; color:var(--ink-soft); margin-top:2px; letter-spacing:0.05em; }
+  .receipt hr{ border:none; border-top:1px dashed var(--line); margin:14px 0; }
+  .r-row{ display:flex; justify-content:space-between; gap:10px; margin-bottom:8px; }
+  .r-row .k{ color:var(--ink-soft); flex-shrink:0; }
+  .r-row .v{ text-align:right; font-weight:700; word-break:break-word; }
+  .r-note{ margin-top:4px; font-size:11.5px; color:var(--ink); line-height:1.5; }
+  .r-status{
+    margin-top:16px;
+    text-align:center;
+    font-family:'Anton',sans-serif;
+    font-size:15px;
+    letter-spacing:0.06em;
+    padding:8px;
+    border:2px solid var(--ink);
+    border-radius:4px;
+  }
+  .r-status.draft{ color:var(--ink-soft); border-style:dashed; border-color:var(--line); }
+  .r-status.submitted{ color:var(--stamp-green); border-color:var(--stamp-green); transform:rotate(-1.5deg); }
+  .barcode{ display:flex; gap:2px; height:34px; margin-top:16px; align-items:flex-end; }
+  .barcode div{ background:var(--ink); flex:1; }
+
+  .receipt-caption{ text-align:center; font-size:12px; color:var(--ink-soft); margin-top:14px; font-family:'Work Sans',sans-serif; }
+
+  /* success overlay state */
+  .success-panel{ display:none; padding:44px; text-align:center; }
+  .success-panel.show{ display:block; }
+  .stamp{
+    display:inline-block;
+    font-family:'Anton',sans-serif;
+    font-size:22px;
+    color:var(--stamp-green);
+    border:3px solid var(--stamp-green);
+    border-radius:8px;
+    padding:10px 26px;
+    transform:rotate(-4deg);
+    margin-bottom:18px;
+  }
+  .success-panel h3{ font-size:26px; margin-bottom:10px; }
+  .success-panel p{ color:var(--ink-soft); max-width:40ch; margin:0 auto 26px; line-height:1.55; }
+  .success-code{ font-family:'Space Mono',monospace; background:var(--gray); display:inline-block; padding:8px 16px; border-radius:4px; font-size:13px; margin-bottom:26px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ border-top:1px solid var(--line); padding:34px 0; }
+  .footer-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  footer .logo{ font-size:18px; }
+  footer p{ font-size:12.5px; color:var(--ink-soft); font-family:'Space Mono',monospace; margin:0; }
+
+  @media (max-width: 880px){
+    .hero-inner{ grid-template-columns:1fr; }
+    .tag-stack{ height:220px; }
+    .steps{ grid-template-columns:1fr; }
+    .form-layout{ grid-template-columns:1fr; }
+    .perforation{ border-left:none; border-top:2px dashed var(--ink); }
+    .perforation::before{ left:50%; top:-11px; transform:translateX(-50%); }
+    .perforation::after{ left:50%; bottom:auto; top:-11px; transform:translateX(calc(-50% + 60px)); }
+    .field-row{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <div class="logo">TIM<span>TIM</span></div>
+    <div class="nav-tag">EMPLOYEE REFERRAL PROGRAM</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow-tag"><span class="dot" aria-hidden="true"></span> NOW REHIRING — WE'RE REOPENING</div>
+      <h1 class="hero-title">Know someone<br>who'd be <span class="accent">great</span><br>on our floor?</h1>
+      <p class="hero-sub">TimTim is rebuilding our team from the ground up. Refer a friend for an open role, and if they're hired, you both come out ahead.</p>
+      <div class="hero-cta">
+        <a href="#refer" class="btn">Refer someone now</a>
+        <a href="#how" class="btn ghost">See how it works</a>
+      </div>
+      <div class="hero-note" style="margin-top:18px;">Takes about 3 minutes. No resume required.</div>
+    </div>
+    <div class="tag-stack" aria-hidden="true">
+      <div class="price-tag t1">
+        <div class="tag-label">EMPLOYEE REWARD</div>
+        <div class="tag-value">EARNED</div>
+      </div>
+      <div class="price-tag t2">
+        <div class="tag-label">STATUS</div>
+        <div class="tag-value">HIRING</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="steps-section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How the referral works</h2>
+      <p>Three steps, start to finish — from your recommendation to their first shift.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>You refer them</h3>
+        <p>Fill out the slip below with your friend's info and a quick note on why they'd fit in at TimTim.</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h3>We reach out</h3>
+        <p>Our hiring team contacts your friend directly to talk through open roles and next steps.</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h3>You get rewarded</h3>
+        <p>Once they're hired and settled in, you'll receive a thank-you reward from TimTim.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="form-section" id="refer">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Write the referral slip</h2>
+      <p>Fill in your details and theirs. Keep it honest — you're vouching for them.</p>
+    </div>
+
+    <div class="form-layout">
+      <div class="form-side" id="formSide">
+        <div class="form-kicker">SLIP NO. <span id="slipNo" class="mono"></span></div>
+        <h2>Referral details</h2>
+
+        <form id="referralForm" novalidate>
+          <fieldset>
+            <legend>Your info</legend>
+            <div class="field-row">
+              <div class="field">
+                <label for="staffFirst">Your first name</label>
+                <input type="text" id="staffFirst" name="staffFirst" autocomplete="given-name">
+                <div class="err" id="err-staffFirst"></div>
+              </div>
+              <div class="field">
+                <label for="staffLast">Your last name</label>
+                <input type="text" id="staffLast" name="staffLast" autocomplete="family-name">
+                <div class="err" id="err-staffLast"></div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Your friend's info</legend>
+            <div class="field">
+              <label for="friendName">Their full name</label>
+              <input type="text" id="friendName" name="friendName" autocomplete="off">
+              <div class="err" id="err-friendName"></div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="friendEmail">Their email address</label>
+                <input type="email" id="friendEmail" name="friendEmail" autocomplete="off">
+                <div class="err" id="err-friendEmail"></div>
+              </div>
+              <div class="field">
+                <label for="friendPhone">Their phone number</label>
+                <input type="tel" id="friendPhone" name="friendPhone" autocomplete="off">
+                <div class="err" id="err-friendPhone"></div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="recommendation">Why should we hire them?</label>
+              <textarea id="recommendation" name="recommendation" maxlength="280" placeholder="A couple sentences on their strengths, work ethic, or experience..."></textarea>
+              <div class="char-count"><span id="charCount">0</span>/280</div>
+              <div class="err" id="err-recommendation"></div>
+            </div>
+          </fieldset>
+
+          <div class="permission-box">
+            <input type="checkbox" id="permission" name="permission">
+            <label for="permission">
+              <strong>Got their okay?</strong>
+              I confirm I have my friend's permission to share their contact details with TimTim for this referral.
+            </label>
+          </div>
+          <div class="err" id="err-permission" style="margin-top:-16px; margin-bottom:20px;"></div>
+
+          <div class="submit-row">
+            <button type="submit" class="btn">Submit referral</button>
+            <span class="hero-note">We'll email you once your friend is contacted.</span>
+          </div>
+        </form>
+      </div>
+
+      <div class="form-side receipt-wrap perforation">
+        <div class="receipt-sticky">
+          <div class="receipt" id="receiptCard">
+            <div class="receipt-title">TIMTIM</div>
+            <div class="receipt-sub">REFERRAL SLIP</div>
+            <hr>
+            <div class="r-row"><span class="k">REFERRED BY</span><span class="v" id="prevStaff">—</span></div>
+            <div class="r-row"><span class="k">CANDIDATE</span><span class="v" id="prevFriend">—</span></div>
+            <div class="r-row"><span class="k">EMAIL</span><span class="v" id="prevEmail">—</span></div>
+            <div class="r-row"><span class="k">PHONE</span><span class="v" id="prevPhone">—</span></div>
+            <div class="r-row"><span class="k">PERMISSION</span><span class="v" id="prevPermission">NOT CONFIRMED</span></div>
+            <hr>
+            <div class="k" style="margin-bottom:4px;">NOTE</div>
+            <div class="r-note" id="prevNote">Nothing written yet.</div>
+            <div class="barcode" aria-hidden="true" id="barcode"></div>
+            <div class="r-status draft" id="statusBox">DRAFT — NOT SUBMITTED</div>
+          </div>
+          <div class="receipt-caption">This slip updates live as you type.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- success state, swapped in on submit -->
+    <div class="form-layout success-panel" id="successPanel" style="margin-top:24px;">
+      <div class="stamp">RECEIVED ✓</div>
+      <h3>Thanks — we've got it.</h3>
+      <p>Your referral for <strong id="successName">your friend</strong> has been logged. Our hiring team will reach out to them directly.</p>
+      <div class="success-code mono">SLIP #<span id="successSlipNo"></span></div>
+      <div>
+        <button class="btn ghost" id="newReferralBtn" type="button">Submit another referral</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="logo">TIM<span>TIM</span></div>
+    <p>TimTim Employee Referral Program — reopening soon.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+
+  // slip number
+  const slipNo = Math.floor(100000 + Math.random()*900000);
+  $('slipNo').textContent = slipNo;
+
+  // barcode
+  const barcode = $('barcode');
+  for(let i=0;i<28;i++){
+    const bar = document.createElement('div');
+    bar.style.width = (Math.random()>0.7 ? '3px':'1.5px');
+    bar.style.opacity = Math.random()>0.5 ? '1':'0.5';
+    barcode.appendChild(bar);
+  }
+
+  const fields = {
+    staffFirst: $('staffFirst'),
+    staffLast: $('staffLast'),
+    friendName: $('friendName'),
+    friendEmail: $('friendEmail'),
+    friendPhone: $('friendPhone'),
+    recommendation: $('recommendation'),
+    permission: $('permission')
+  };
+
+  const charCount = $('charCount');
+  fields.recommendation.addEventListener('input', () => {
+    charCount.textContent = fields.recommendation.value.length;
+    updatePreview();
+  });
+
+  function updatePreview(){
+    const staffName = [fields.staffFirst.value.trim(), fields.staffLast.value.trim()].filter(Boolean).join(' ');
+    $('prevStaff').textContent = staffName || '—';
+    $('prevFriend').textContent = fields.friendName.value.trim() || '—';
+    $('prevEmail').textContent = fields.friendEmail.value.trim() || '—';
+    $('prevPhone').textContent = fields.friendPhone.value.trim() || '—';
+    $('prevPermission').textContent = fields.permission.checked ? 'CONFIRMED ✓' : 'NOT CONFIRMED';
+    $('prevPermission').style.color = fields.permission.checked ? 'var(--stamp-green)' : 'var(--ink)';
+    const note = fields.recommendation.value.trim();
+    $('prevNote').textContent = note ? (note.length > 140 ? note.slice(0,140) + '…' : note) : 'Nothing written yet.';
+  }
+
+  Object.values(fields).forEach(f => f.addEventListener('input', updatePreview));
+  fields.permission.addEventListener('change', updatePreview);
+  updatePreview();
+
+  function setError(field, msg){
+    $('err-' + field).textContent = msg || '';
+    const el = fields[field];
+    if(el.type !== 'checkbox'){
+      el.style.borderColor = msg ? '#A6431F' : '';
+    }
+  }
+
+  function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function validPhone(v){ return v.replace(/[^0-9]/g,'').length >= 7; }
+
+  function validate(){
+    let ok = true;
+    if(!fields.staffFirst.value.trim()){ setError('staffFirst','Please enter your first name.'); ok = false; } else setError('staffFirst');
+    if(!fields.staffLast.value.trim()){ setError('staffLast','Please enter your last name.'); ok = false; } else setError('staffLast');
+    if(!fields.friendName.value.trim()){ setError('friendName',"Please enter your friend's name."); ok = false; } else setError('friendName');
+    if(!validEmail(fields.friendEmail.value.trim())){ setError('friendEmail','Enter a valid email address.'); ok = false; } else setError('friendEmail');
+    if(!validPhone(fields.friendPhone.value.trim())){ setError('friendPhone','Enter a valid phone number.'); ok = false; } else setError('friendPhone');
+    if(!fields.recommendation.value.trim()){ setError('recommendation','Tell us why they would be a good fit.'); ok = false; } else setError('recommendation');
+    if(!fields.permission.checked){ $('err-permission').textContent = "Please confirm you have their permission before submitting."; ok = false; } else $('err-permission').textContent = '';
+    return ok;
+  }
+
+  $('referralForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!validate()) return;
+
+    $('statusBox').textContent = 'SUBMITTED ✓';
+    $('statusBox').classList.remove('draft');
+    $('statusBox').classList.add('submitted');
+
+    $('successName').textContent = fields.friendName.value.trim();
+    $('successSlipNo').textContent = slipNo;
+
+    document.getElementById('formSide').style.display = 'none';
+    document.querySelector('.receipt-wrap').style.display = 'none';
+    $('successPanel').classList.add('show');
+  });
+
+  $('newReferralBtn').addEventListener('click', function(){
+    $('referralForm').reset();
+    charCount.textContent = '0';
+    updatePreview();
+    $('statusBox').textContent = 'DRAFT — NOT SUBMITTED';
+    $('statusBox').classList.remove('submitted');
+    $('statusBox').classList.add('draft');
+    document.getElementById('formSide').style.display = '';
+    document.querySelector('.receipt-wrap').style.display = '';
+    $('successPanel').classList.remove('show');
+    Object.keys(fields).forEach(k => setError(k, ''));
+    window.scrollTo({top: document.getElementById('refer').offsetTop - 20, behavior: 'smooth'});
+  });
+})();
+</script>
+
+</body>
+</html>
