@@ -346,6 +346,24 @@
     .perforation::after{ left:50%; bottom:auto; top:-11px; transform:translateX(calc(-50% + 60px)); }
     .field-row{ grid-template-columns:1fr; }
   }
+
+  .nav-cta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink);
+    background: rgba(227, 151, 118, 0.22);
+    border: 1px solid rgba(201, 121, 82, 0.45);
+    padding: 0.5rem 1.25rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .nav-cta:hover {
+    background: rgba(227, 151, 118, 0.35);
+    border-color: rgba(201, 121, 82, 0.8);
+    color: var(--ink);
+  }
 </style>
 </head>
 <body>
@@ -354,6 +372,7 @@
   <div class="wrap nav-row">
     <div class="logo">TIM<span>TIM</span></div>
     <div class="nav-tag">EMPLOYEE REFERRAL PROGRAM</div>
+    <a href="index.html#home" target="_blank" class="nav-cta">Return Home ↗</a>
   </div>
 </header>
 
